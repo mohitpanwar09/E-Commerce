@@ -1,5 +1,6 @@
 package com.example.e_commerse.ktActivitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -26,6 +27,7 @@ class UserProductActivity : AppCompatActivity() {
             user_product_price.text=productDetails.price.toString()
             user_product_des.text=productDetails.description
         }
+        user_product_review_recycleView.suppressLayout(true)
 
 
         val adapter=GroupAdapter<GroupieViewHolder>()
@@ -38,6 +40,17 @@ class UserProductActivity : AppCompatActivity() {
         user_product_addCart.setOnClickListener {
             addToCart()
         }
+
+        user_product_placeOrder.setOnClickListener {
+            placeOrder()
+        }
+    }
+
+    private fun placeOrder(){
+        val productDetails=intent.getParcelableExtra<FetchItem>("ProductD")
+        val intent=Intent(this,OrderSummary::class.java)
+        intent.putExtra("ProductDe",productDetails)
+        startActivity(intent)
     }
 
     private fun addToCart(){

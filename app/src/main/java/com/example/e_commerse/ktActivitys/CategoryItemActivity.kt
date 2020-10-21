@@ -62,7 +62,7 @@ class CategoryItemActivity : AppCompatActivity() {
                                 adapter.setOnItemClickListener { item, view ->
                                     val ptProduct=item as PtCategoryItem
                                     val intent=Intent(view.context,UserProductActivity::class.java)
-                                        intent.putExtra("ProductD",item.itemCt)
+                                        intent.putExtra("ProductD",ptProduct.itemCt)
                                     startActivity(intent)
 
                                 }
